@@ -7,7 +7,7 @@ public class NumeroPorExtenso {
 	public String[] Dezenas;
 	public String[] Centenas;
 	public static final String MIL = "mil";
-	public static final String MILAO = "milhoes";
+	public static final String MILHOES = "milhoes";
  	
 	
 	public NumeroPorExtenso() {
@@ -53,9 +53,14 @@ public class NumeroPorExtenso {
 			return dezenas(numero);
 		}else if (numero < 1000){
 			return centenas(numero);
-		}
+		}else if (numero < 10000){
+			return milhares(numero);
+		}else if (numero < Math.pow(10, 9)) {
+            return milhoes(numero);
+    }
+          return "um bilhão";
 		
-		return ZeroANove[numero];
+		
 	}
 	
 	
@@ -73,6 +78,21 @@ public class NumeroPorExtenso {
         return extenso(numero % 100, Centenas[(numero - (numero % 100))/100 - 1] + " e ");
 }
 	
+	
+	private String milhares(int numero) {
+        if (numero % 1000 == 0)
+                return String.format("%s %s", extenso(String.valueOf(numero/1000)), MIL);
+        return extenso(numero % 1000, extenso(String.valueOf(numero - (numero % 1000))) + ((numero%100==0 || numero%1000 < 100)? " e ": " "));        
+        }
+	
+	private String milhoes(int numero){
+        if (numero == 1000000)
+                return "um milhão";
+        int resto = numero % 1000000;
+        if (resto == 0)
+                return String.format("%s %s", extenso(String.valueOf(numero/1000000)), MILHOES );
+        return extenso(resto, extenso(String.valueOf(numero - (resto))) + ((numero%100==0 || numero%1000 < 100)? " e ": " "));
+}
 	
 	private String extenso(int numero, String string) {
 		String n = String.valueOf(numero);

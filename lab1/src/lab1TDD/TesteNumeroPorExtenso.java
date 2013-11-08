@@ -37,6 +37,10 @@ public class TesteNumeroPorExtenso {
 		assertEquals(numero.extenso("99"), "noventa e nove");
 		assertEquals(numero.extenso("154"), "cento e cinquenta e quatro");
 		assertEquals(numero.extenso("999"), "novecentos e noventa e nove");
+		assertEquals(numero.extenso("1099"), "um mil e noventa e nove");
+		assertEquals(numero.extenso("1199"), "um mil cento e noventa e nove");
+		assertEquals(numero.extenso("2457"), "dois mil quatrocentos e cinquenta e sete");
+		assertEquals(numero.extenso("9999"),"nove mil novecentos e noventa e nove");
 		
 		
 	}
