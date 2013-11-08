@@ -1,38 +1,50 @@
 package lab1TDD;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
-
 public class NumeroPorExtenso {
 
-	private NumeroPoExtenso numero;
+	public String[] ZeroANove;
+	public String[] DezADezenove;
 	
-	@Before
 	
-	public void Numero(){
+	public NumeroPorExtenso() {
 		
-	     numero = new NumeroPoExtenso();	
+		ZeroANove = new String[] { "zero","um","dois","tres","quatro","cinco","seis","sete","oito","nove"};
+		DezADezenove = new String[] {"dez", "onze", "doze", "treze", "catorze",
+                "quinze", "dezesseis", "dezessete", "dezoito", "dezenove" };
+	}
+	
+	public boolean entradaVazia(String entrada){
+		
+		if (entrada == "" )
+		    return true;
+		return false;
+	}
+	
+	public boolean entradaPalavra(String entrada){
+		
+		try {
+			Integer.parseInt(entrada);
+			return false;
+		} catch (NumberFormatException e) {
+			return true;
+		}
 		
 	}
 	
-	@Test
-	public void NumerosPorExtenso() {
+	public String extenso(String n){
 		
-		assertEquals(numero.extenso("9"), "nove");
-		assertEquals(numero.extenso("7"), "sete");
-		assertEquals(numero.extenso("0"), "zero");
-		assertEquals(numero.extenso("5"), "cinco");
-		assertEquals(numero.extenso("11"), "onze");
-		assertEquals(numero.extenso("19"), "dezenove");
-		assertEquals(numero.extenso("15"), "quinze");
-		assertEquals(numero.extenso("10"), "dez");
-		assertEquals(numero.extenso("15"), "quinze");
-		assertEquals(numero.extenso(""), "Por favor, digite um numero");
+		if (entradaVazia(n) || entradaPalavra(n))
+			return "Por favor, digite um numero";
 		
+		int numero = Integer.parseInt(n);
+	
+		if (numero < 10){
+			return ZeroANove[numero];
+		}else if(numero <= 19){
+			return DezADezenove[numero - 10];
+		}
 		
-		
+		return ZeroANove[numero];
 	}
-
+	
 }
