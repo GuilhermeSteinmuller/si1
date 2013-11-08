@@ -7,12 +7,13 @@ import org.junit.Test;
 
 public class NumeroPorExtenso {
 
+	private NumeroPoExtenso numero;
 	
 	@Before
 	
 	public void Numero(){
 		
-		NumeroPoExtenso numero;
+	     numero = new NumeroPoExtenso();	
 		
 	}
 	
