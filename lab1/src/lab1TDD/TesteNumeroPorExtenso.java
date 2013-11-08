@@ -32,6 +32,11 @@ public class TesteNumeroPorExtenso {
 		assertEquals(numero.extenso(""), "Por favor, digite um numero");
 		assertEquals(numero.extenso("xpto"), "Por favor, digite um numero");
 		assertEquals(numero.extenso("x1p0"), "Por favor, digite um numero");
+		assertEquals(numero.extenso("21"), "vinte e um");
+		assertEquals(numero.extenso("67"), "sessenta e sete");
+		assertEquals(numero.extenso("99"), "noventa e nove");
+		assertEquals(numero.extenso("154"), "cento e cinquenta e quatro");
+		assertEquals(numero.extenso("999"), "novecentos e noventa e nove");
 		
 		
 	}
