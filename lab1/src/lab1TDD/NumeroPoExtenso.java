@@ -15,7 +15,12 @@ public class NumeroPoExtenso {
 	
 	
 	
-	public String extenso(int numero){
+	public String extenso(String n){
+		
+		if (n == "")
+			return "Por favor, digite um numero";
+		
+		int numero = Integer.parseInt(n);
 	
 		if (numero < 10){
 			return ZeroANove[numero];
