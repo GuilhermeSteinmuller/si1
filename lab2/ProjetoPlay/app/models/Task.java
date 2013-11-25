@@ -5,27 +5,39 @@ import java.util.List;
 
 
 import play.data.validation.Constraints.*;
+import play.db.ebean.*;
+import play.db.ebean.Model.Finder;
+import play.data.validation.Constraints.*;
+
+import javax.persistence.*;
 
 
-public class Task {
+@Entity
+public class Task extends Model {
 
+	@Id
 	public Long id;
 	@Required
 	public String label;
 	
 	
+	public static Finder<Long,Task> find = new Finder(
+			    Long.class, Task.class
+			  );
 	
 	public static List<Task> all(){
-		return new ArrayList<Task>();
+		return find.all();
 	}
 	
 	public static void create(Task task){
-		
+		task.save();
 	}
 	
 	public static void delete(Long id){
-		
+		find.ref(id).delete();
 	}
+	
+	
 	
 	
 	
