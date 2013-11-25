@@ -1,0 +1,7 @@
+
+# --- Constraints
+constraint.required=Obrigatorio
+
+# --- Errors
+error.required=Este campo é obrigatorio
+error.invalid=Valor inválido
