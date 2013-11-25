@@ -1,5 +1,6 @@
 package controllers;
 
+
 import models.Task;
 import play.data.Form;
 import play.mvc.*;
@@ -18,10 +19,7 @@ public class Application extends Controller {
         return ok(helloWorld.render("Hello world",1));
 }  
     
-    public static Result tasks(){
-    	return TODO;
-    }
-    
+   
     public static Result newTask(){
     	return TODO;
     }
@@ -30,5 +28,10 @@ public class Application extends Controller {
     	return TODO;
     }
     
+    public static Result tasks() {
+		  return ok(
+		    views.html.index.render(Task.all(), taskForm)
+		  );
+		}
 
 }
