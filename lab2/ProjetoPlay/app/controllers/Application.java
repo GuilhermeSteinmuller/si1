@@ -18,10 +18,7 @@ public class Application extends Controller {
         return redirect(routes.Application.tasks());
     }
 
-    public static Result helloWorld() {
-        return ok(helloWorld.render("Hello world",1));
-}  
-    
+
    
     public static Result newTask(){
     	 Form<Task> filledForm = taskForm.bindFromRequest();
