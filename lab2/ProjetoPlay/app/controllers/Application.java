@@ -42,5 +42,16 @@ public class Application extends Controller {
 		    views.html.index.render(Task.all(), taskForm)
 		  );
 		}
+    
+    public static Result updateTask(Long id) {
+        Form<Task> taskForm = Form.form(Task.class).bindFromRequest();
+        if (taskForm.hasErrors()) {
+            return badRequest(views.html.index.render(Task.all(), taskForm));
+        } else {
+        	
+            Task.update(id, taskForm.get());
+            return redirect(routes.Application.tasks());
+        }
+    }
 
 }

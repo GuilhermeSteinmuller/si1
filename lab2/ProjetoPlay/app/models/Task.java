@@ -13,14 +13,18 @@ import javax.persistence.*;
 
 
 @Entity
-public class Task extends Model {
+public class Task extends Model implements Comparable<Task>{
 
 	@Id
 	public Long id;
 	@Required
 	public String label;
+	@Required
 	public String descricao;
+	@Required
 	public int prioridade;
+	@Required
+	public boolean Naofeita = true;
 	
 	public static Finder<Long,Task> find = new Finder(
 			    Long.class, Task.class
@@ -34,9 +38,55 @@ public class Task extends Model {
 		task.save();
 	}
 	
+	
 	public static void delete(Long id){
 		find.ref(id).delete();
 	}
+	
+	public static void update(Long id, Task task){
+	    task.update(id);
+	}
+
+	@Override
+	public int compareTo(Task o) {
+		 return this.getPrioridade() - o.getPrioridade();
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public int getPrioridade() {
+		return prioridade;
+	}
+
+	public void setPrioridade(int prioridade) {
+		this.prioridade = prioridade;
+	}
+
+	public boolean isNaoFeita() {
+		return Naofeita;
+	}
+
+	public void setFeita(boolean feita) {
+		this.Naofeita = feita;
+	}
+	
+	
+	
+	
 	
 	
 	

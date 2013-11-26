@@ -8,6 +8,7 @@ create table task (
   label                     varchar(255),
   descricao                 varchar(255),
   prioridade                integer,
+  naofeita                  boolean,
   constraint pk_task primary key (id))
 ;
 
