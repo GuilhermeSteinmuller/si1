@@ -24,7 +24,7 @@ public class Task extends Model implements Comparable<Task>{
 	@Required
 	public int prioridade;
 	@Required
-	public boolean Naofeita = true;
+	public boolean notDone = true;
 	
 	public static Finder<Long,Task> find = new Finder(
 			    Long.class, Task.class
@@ -75,13 +75,20 @@ public class Task extends Model implements Comparable<Task>{
 	public void setPrioridade(int prioridade) {
 		this.prioridade = prioridade;
 	}
-
-	public boolean isNaoFeita() {
-		return Naofeita;
+	public Long getId() {
+		return id;
 	}
 
-	public void setFeita(boolean feita) {
-		this.Naofeita = feita;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public boolean isNotDone() {
+		return notDone;
+	}
+
+	public void setNotDone(boolean notDone) {
+		this.notDone = notDone;
 	}
 	
 	
