@@ -24,40 +24,31 @@ public class Application extends Controller {
     }
 
     public static Result tasks() {
-        List<Task> tarefas = Task.all();
-        Collections.sort(tarefas);
-        Collections.reverse(tarefas);
-        List<Task> doneTasks = new ArrayList<Task>();
-        List<Task> notDoneTasks = new ArrayList<Task>();
-        for (Task t: tarefas){
-                if (t.isNotDone()){
-                        notDoneTasks.add(t);
-                } else {
-                        doneTasks.add(t);
-                }
-        }
-             
-            return ok(views.html.index.render(doneTasks, notDoneTasks, taskForm));
+        
+        
+        List<Task> doneTasks = Task.tasksDoneRefresh(Task.all());
+        List<Task> notDoneTasks = Task.tasksNotDoneRefresh(Task.all());
+        
+        Collections.sort(doneTasks);
+        Collections.reverse(notDoneTasks);
+        
+        return ok(views.html.index.render(doneTasks, notDoneTasks, taskForm));
     }
 
    
     public static Result newTask() {
         Form<Task> filledForm = taskForm.bindFromRequest();
+        Collections.sort(Task.all());
+        List<Task> doneTasks = Task.tasksDoneRefresh(Task.all());
+        List<Task> notDoneTasks = Task.tasksNotDoneRefresh(Task.all());
+        
+        
+       
         if (filledForm.hasErrors()){
                 
-            List<Task> tarefas = Task.all();
-            Collections.sort(tarefas);
-            Collections.reverse(tarefas);
-            List<Task> doneTasks = new ArrayList<Task>();
-            List<Task> notDoneTasks = new ArrayList<Task>();
-            for (Task t: tarefas){
-                    if (t.isNotDone()){
-                            notDoneTasks.add(t);
-                    } else {
-                            doneTasks.add(t);
-                    }
-            }
             
+           
+           
             return badRequest(views.html.index.render(notDoneTasks, doneTasks, taskForm));
         } else {
                 Task.create(filledForm.get());
@@ -71,16 +62,9 @@ public class Application extends Controller {
     }
     
     
-    
-   /* public static Result updateTask(Long id) {
-        Form<Task> taskForm = Form.form(Task.class).bindFromRequest();
-        if (taskForm.hasErrors()) {
-            return badRequest(views.html.index.render(Task.all(), taskForm));
-        } else {
-        	
-            Task.update(id, taskForm.get());
-            return redirect(routes.Application.tasks());
-        }
-    }*/
+    public static Result updateTask(Long id){
+        Task.update(id);
+        return redirect(routes.Application.tasks());
+}
 
 }

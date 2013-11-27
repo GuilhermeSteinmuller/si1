@@ -57,13 +57,15 @@
                                 @form(routes.Application.deleteTask(task.getId())){
                                         <input type="submit" value="Deletar">
                                 }
+                                @form(routes.Application.updateTask(task.getId())){
+                                        <input type="submit" value="Concluida">
+                                }
+                                                             
                         </div>
                         </div>                        
                 }
 
 
 </div>
-    
-}
-
+}    
 

@@ -43,8 +43,10 @@ public class Task extends Model implements Comparable<Task>{
 		find.ref(id).delete();
 	}
 	
-	public static void update(Long id, Task task){
-	    task.update(id);
+	public static void update(Long id){
+		Task task = find.ref(id);
+		task.setNotDone(false);
+	    task.update();
 	}
 
 	@Override
@@ -92,8 +94,28 @@ public class Task extends Model implements Comparable<Task>{
 	}
 	
 	
+	 public static List<Task> tasksDoneRefresh(List<Task> tasks){
+         List<Task> refreshedList = new ArrayList<Task>();
+         
+         for(Task task : tasks){
+                 if(!task.isNotDone())
+                         refreshedList.add(task);
+         }
+         return refreshedList;
+ }
 	
-	
+	 public static List<Task> tasksNotDoneRefresh(List<Task> tasks){
+         List<Task> refreshedList = new ArrayList<Task>();
+         
+         
+         for(Task task : tasks){
+                 if(task.isNotDone())
+                         refreshedList.add(task);
+         }
+         return refreshedList;
+ }
+
+
 	
 	
 	
